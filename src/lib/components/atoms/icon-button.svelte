@@ -18,9 +18,9 @@
   class={[
     'inline-flex size-12 items-center justify-center rounded-xl',
     'touch-manipulation transition select-none',
-    'hover:bg-surface-sunken focus-visible:bg-surface-sunken',
+    'focus-visible:bg-surface-sunken enabled:hover:bg-surface-sunken',
     'motion-safe:active:scale-90',
-    'disabled:pointer-events-none disabled:opacity-40',
+    'disabled:opacity-40',
     className,
   ]}
   {...rest}

@@ -32,7 +32,7 @@
     'transition select-none touch-manipulation',
     'focus-visible:outline-2 focus-visible:outline-offset-2',
     'motion-safe:active:scale-95',
-    'disabled:pointer-events-none disabled:opacity-50',
+    'disabled:opacity-50',
   ];
 
   const sizes: Record<Size, string> = {
@@ -42,13 +42,13 @@
 
   const variants: Record<Variant, string> = {
     primary:
-      'bg-primary text-foreground shadow-sm hover:bg-primary-dark focus-visible:bg-primary-dark active:bg-primary-darker',
+      'bg-primary text-foreground shadow-sm hover:bg-primary-dark focus-visible:bg-primary-dark active:bg-primary-darker disabled:hover:bg-primary',
     secondary:
-      'bg-coral text-foreground shadow-sm hover:bg-coral-dark focus-visible:bg-coral-dark',
+      'bg-coral text-foreground shadow-sm hover:bg-coral-dark focus-visible:bg-coral-dark disabled:hover:bg-coral',
     ghost:
-      'bg-transparent text-foreground hover:bg-surface-sunken focus-visible:bg-surface-sunken',
+      'bg-transparent text-foreground hover:bg-surface-sunken focus-visible:bg-surface-sunken disabled:hover:bg-transparent',
     danger:
-      'border-2 border-error/30 bg-surface text-error hover:bg-error/10 focus-visible:bg-error/10',
+      'border-2 border-error/30 bg-surface text-error hover:bg-error/10 focus-visible:bg-error/10 disabled:hover:bg-surface',
   };
 </script>
 

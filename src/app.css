@@ -120,4 +120,26 @@
   :focus:not(:focus-visible) {
     @apply outline-none;
   }
+
+  /*
+   * Cursors for interactive elements.
+   * Tailwind v4's Preflight no longer sets `cursor: pointer` on buttons, so set
+   * it here for every enabled interactive control; disabled ones get the
+   * not-allowed cursor. (Anchors with href keep the UA pointer.)
+   */
+  button,
+  [role='button'],
+  label[for],
+  summary,
+  select {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled,
+  textarea:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
 }
