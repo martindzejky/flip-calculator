@@ -22,9 +22,9 @@
 
   const digits = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-  // Physical-keyboard input is for non-touch ("desktop") devices only; touch
-  // devices keep using the on-screen keys exclusively.
-  const desktop = new MediaQuery('(hover: hover) and (pointer: fine)');
+  // Touch devices keep using the on-screen keys exclusively; non-touch
+  // ("desktop") devices also accept physical-keyboard input.
+  const touch = new MediaQuery('(pointer: coarse)');
 
   function digitCount(s: string): number {
     return s.replace('-', '').length;
@@ -50,7 +50,7 @@
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    if (!desktop.current || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (touch.current || e.metaKey || e.ctrlKey || e.altKey) return;
 
     if (e.key >= '0' && e.key <= '9') {
       pressDigit(e.key);
