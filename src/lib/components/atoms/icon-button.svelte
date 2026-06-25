@@ -16,7 +16,7 @@
   aria-label={label}
   title={label}
   class={[
-    'inline-flex size-12 items-center justify-center rounded-xl text-foreground',
+    'inline-flex size-12 items-center justify-center rounded-xl',
     'touch-manipulation transition select-none',
     'hover:bg-surface-sunken focus-visible:bg-surface-sunken',
     'motion-safe:active:scale-90',

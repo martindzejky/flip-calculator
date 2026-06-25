@@ -45,7 +45,7 @@
       class="mt-6 flex flex-col items-center gap-4 rounded-3xl border-2 border-dashed border-border bg-surface/60 px-6 py-12 text-center"
     >
       <span
-        class="inline-flex size-16 items-center justify-center rounded-full bg-primary/12 text-primary"
+        class="inline-flex size-16 items-center justify-center rounded-full bg-primary/12 text-primary-strong"
       >
         <Users size={32} aria-hidden="true" />
       </span>
@@ -81,7 +81,7 @@
     <button
       type="button"
       onclick={add}
-      class="mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-border font-heading font-semibold text-muted transition select-none hover:border-primary hover:text-primary focus-visible:border-primary motion-safe:active:scale-95"
+      class="mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-border font-heading font-semibold text-muted transition select-none hover:border-primary hover:text-primary-strong focus-visible:border-primary motion-safe:active:scale-95"
     >
       <UserPlus size={20} aria-hidden="true" />
       Add player

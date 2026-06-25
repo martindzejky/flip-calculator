@@ -88,7 +88,7 @@
       {#each heroCards as card (card.n)}
         <div
           class={[
-            'border-white text-white flex aspect-[3/4] w-16 items-center justify-center rounded-2xl border-4 font-heading text-3xl font-bold shadow-lg sm:w-20 sm:text-4xl',
+            'flex aspect-[3/4] w-16 items-center justify-center rounded-2xl border-4 border-foreground font-heading text-3xl font-bold text-foreground shadow-lg sm:w-20 sm:text-4xl',
             card.color,
             card.rotate,
             card.shift,
@@ -102,7 +102,7 @@
     <h1 class="text-5xl font-bold tracking-tight text-balance sm:text-6xl">
       Flip Tally
     </h1>
-    <p class="mx-auto mt-3 max-w-sm text-xl font-semibold text-primary">
+    <p class="mx-auto mt-3 max-w-sm text-xl font-semibold text-primary-strong">
       Keep score, not paper.
     </p>
     <p class="mx-auto mt-3 max-w-md text-lg text-pretty text-muted">
@@ -132,7 +132,7 @@
         <li class="rounded-3xl border border-border bg-surface p-5 shadow-sm">
           <div class="flex items-center gap-3">
             <span
-              class="inline-flex size-11 items-center justify-center rounded-2xl bg-primary/12 text-primary"
+              class="inline-flex size-11 items-center justify-center rounded-2xl bg-primary/12 text-primary-strong"
             >
               <Icon size={24} aria-hidden="true" />
             </span>
@@ -157,7 +157,7 @@
         <div
           class="flex items-start gap-3 rounded-2xl bg-surface-sunken/60 p-4"
         >
-          <span class="mt-0.5 text-coral">
+          <span class="mt-0.5 text-coral-strong">
             <Icon size={22} aria-hidden="true" />
           </span>
           <div>
@@ -174,7 +174,11 @@
     <div
       class="flex items-center gap-3 rounded-2xl border-2 border-dashed border-primary/40 bg-primary/8 p-4 text-sm"
     >
-      <Smartphone size={28} class="shrink-0 text-primary" aria-hidden="true" />
+      <Smartphone
+        size={28}
+        class="shrink-0 text-primary-strong"
+        aria-hidden="true"
+      />
       <p class="text-pretty">
         <strong>Add to Home Screen</strong> from your browser's share menu to play
         it like a native app, even offline.

@@ -55,9 +55,8 @@
       onclick={onAdd}
       aria-label={`Add a round score for ${player.name}`}
       class={[
-        'text-white inline-flex min-h-12 items-center gap-1.5 rounded-2xl px-4 font-heading font-semibold shadow-sm',
-        'touch-manipulation transition select-none motion-safe:active:scale-95',
-        color.bg,
+        'inline-flex min-h-12 items-center gap-1.5 rounded-2xl bg-foreground px-4 font-heading font-semibold text-background shadow-sm',
+        'touch-manipulation transition select-none hover:opacity-90 focus-visible:opacity-90 motion-safe:active:scale-95',
       ]}
     >
       <Plus size={20} aria-hidden="true" />

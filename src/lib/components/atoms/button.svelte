@@ -42,9 +42,9 @@
 
   const variants: Record<Variant, string> = {
     primary:
-      'bg-primary text-white shadow-sm hover:bg-primary-dark focus-visible:bg-primary-dark active:bg-primary-darker',
+      'bg-primary text-foreground shadow-sm hover:bg-primary-dark focus-visible:bg-primary-dark active:bg-primary-darker',
     secondary:
-      'bg-coral text-white shadow-sm hover:bg-coral-dark focus-visible:bg-coral-dark',
+      'bg-coral text-foreground shadow-sm hover:bg-coral-dark focus-visible:bg-coral-dark',
     ghost:
       'bg-transparent text-foreground hover:bg-surface-sunken focus-visible:bg-surface-sunken',
     danger:
