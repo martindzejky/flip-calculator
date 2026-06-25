@@ -1,14 +1,16 @@
 /*
- * Global stylesheet. Structure mirrors the template convention:
- *   1. @fontsource imports (optional — see TEMPLATE.md §4.2)
+ * Global stylesheet.
+ *   1. @fontsource imports (Fredoka display + Nunito body)
  *   2. @import 'tailwindcss'
- *   3. @theme { } — design tokens (kept in sync with the project's DESIGN.md)
+ *   3. @theme { } — design tokens (kept in sync with DESIGN.md)
  *   4. @layer base — fluid typography, base colors, global focus styles
  *
- * The base template uses a neutral system font stack. To use webfonts, add
- * `@fontsource/*` imports here and point the `--font-*` tokens at them.
+ * Visual system: retro-playful board-game look grounded in the Flip 7 identity
+ * (teal / coral / gold on warm cream). See DESIGN.md.
  */
 
+@import '@fontsource-variable/fredoka';
+@import '@fontsource-variable/nunito';
 @import 'tailwindcss';
 
 @theme {
@@ -16,31 +18,50 @@
   --color-*: initial;
   --font-*: initial;
 
-  /* Surfaces and text (neutral defaults — replace per project; see TEMPLATE.md §6) */
-  --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-border: #e2e8f0;
-  --color-foreground: #0f172a;
-  --color-muted: #64748b;
+  /* Surfaces and text */
+  --color-background: #fff8e7;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f3e9cf;
+  --color-border: #e7d9b5;
+  --color-foreground: #23201b;
+  --color-muted: #8a7e68;
 
-  /* Accent */
-  --color-accent: #2563eb;
-  --color-accent-dark: color-mix(in oklch, var(--color-accent), black 8%);
-  --color-accent-darker: color-mix(in oklch, var(--color-accent), black 16%);
+  /* Brand accents (Flip 7) */
+  --color-primary: #2ba8a2;
+  --color-primary-dark: color-mix(in oklch, var(--color-primary), black 10%);
+  --color-primary-darker: color-mix(in oklch, var(--color-primary), black 20%);
+  --color-coral: #ef6c4a;
+  --color-coral-dark: color-mix(in oklch, var(--color-coral), black 10%);
+  --color-gold: #ffd23f;
+  --color-gold-dark: color-mix(in oklch, var(--color-gold), black 12%);
 
   /* Semantic */
-  --color-error: #dc2626;
-  --color-success: #16a34a;
+  --color-error: #d6443a;
+  --color-success: #2f9e57;
+
+  /* Player ramp — drawn from the real Flip 7 number-card colors */
+  --color-p-teal: #2ba8a2;
+  --color-p-coral: #ef6c4a;
+  --color-p-gold: #f4b400;
+  --color-p-magenta: #d6336c;
+  --color-p-lime: #7cb518;
+  --color-p-plum: #8e5ea2;
+  --color-p-blue: #2f6fb0;
+  --color-p-orange: #e8772e;
+  --color-p-green: #2f9e57;
+  --color-p-peach: #f08a5d;
+  --color-p-red: #d6443a;
+  --color-p-fuchsia: #c026d3;
 
   /* Layout sizes */
   --container-main: 1280px;
   --container-medium: 960px;
   --container-small: 640px;
+  --container-app: 560px;
 
-  /* Typography (system stack by default) */
-  --font-main:
-    system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-heading: var(--font-main);
+  /* Typography */
+  --font-main: 'Nunito Variable', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Fredoka Variable', system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
@@ -53,11 +74,13 @@
     font-size: 16px;
     font-size: clamp(16px, calc(16px + 4 * ((100vw - 640px) / 640)), 20px);
     font-family: var(--font-main);
+    -webkit-text-size-adjust: 100%;
   }
 
   /* Default colors and styles */
   body {
-    @apply scroll-smooth bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased;
+    overscroll-behavior-y: none;
   }
 
   h1,
@@ -86,7 +109,7 @@
 
   /* Global keyboard focus styles */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent outline-solid;
+    @apply outline-2 outline-offset-2 outline-primary outline-solid;
   }
 
   :focus:not(:focus-visible) {

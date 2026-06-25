@@ -1,47 +1,197 @@
 <script lang="ts">
-  import { Github, Rocket } from '@lucide/svelte';
+  import { onMount } from 'svelte';
+  import Button from '$lib/components/atoms/button.svelte';
+  import { hasSavedGame } from '$lib/state/game.svelte';
+  import {
+    Lock,
+    Plus,
+    Smartphone,
+    Trophy,
+    Users,
+    WifiOff,
+  } from '@lucide/svelte';
+
+  let canContinue = $state(false);
+  onMount(() => {
+    canContinue = hasSavedGame();
+  });
+
+  // Decorative hero cards — number + player color + tilt.
+  const heroCards = [
+    {
+      n: 7,
+      color: 'bg-p-teal',
+      rotate: '-rotate-12',
+      shift: '-translate-x-2 translate-y-2',
+    },
+    { n: 3, color: 'bg-p-coral', rotate: 'rotate-6', shift: 'translate-y-1' },
+    { n: 12, color: 'bg-p-gold', rotate: '-rotate-3', shift: '-translate-y-3' },
+    {
+      n: 5,
+      color: 'bg-p-plum',
+      rotate: 'rotate-12',
+      shift: 'translate-x-1 translate-y-2',
+    },
+  ];
+
+  const steps = [
+    {
+      icon: Users,
+      title: 'Add the table',
+      body: 'Type in everyone who is playing. Reorder or rename any time.',
+    },
+    {
+      icon: Plus,
+      title: 'Tally each round',
+      body: 'After every round, tap a player and punch in their points.',
+    },
+    {
+      icon: Trophy,
+      title: 'See who is ahead',
+      body: 'Totals add up live and the current leader gets the crown.',
+    },
+  ];
+
+  const features = [
+    {
+      icon: WifiOff,
+      title: 'Works offline',
+      body: 'No signal needed once it is on your phone.',
+    },
+    {
+      icon: Smartphone,
+      title: 'Installs like an app',
+      body: 'Add it to your home screen and open it full-screen.',
+    },
+    {
+      icon: Lock,
+      title: 'Stays private',
+      body: 'Scores live on your device. No accounts, no cloud.',
+    },
+  ];
 </script>
 
 <svelte:head>
-  <title>SvelteKit Template</title>
+  <title>Flip Tally — a score pad for Flip 7</title>
   <meta
     name="description"
-    content="An opinionated SvelteKit starter template."
+    content="A colorful, offline score pad for Flip 7 and other round-based board games. Add players, tally each round, and see the winner — right on your phone."
   />
 </svelte:head>
 
-<section
-  class="mx-auto flex max-w-medium flex-col items-center gap-6 px-4 py-16 text-center"
->
-  <span
-    class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-sm text-muted"
+<main class="flex flex-1 flex-col">
+  <!-- Hero -->
+  <section
+    class="mx-auto w-full max-w-medium px-5 pt-14 pb-10 text-center sm:pt-20"
   >
-    <Rocket size={16} aria-hidden="true" />
-    SvelteKit project template
-  </span>
+    <div class="mb-8 flex items-end justify-center gap-2" aria-hidden="true">
+      {#each heroCards as card (card.n)}
+        <div
+          class={[
+            'border-white text-white flex aspect-[3/4] w-16 items-center justify-center rounded-2xl border-4 font-heading text-3xl font-bold shadow-lg sm:w-20 sm:text-4xl',
+            card.color,
+            card.rotate,
+            card.shift,
+          ]}
+        >
+          {card.n}
+        </div>
+      {/each}
+    </div>
 
-  <h1 class="text-4xl font-bold text-balance">
-    An opinionated SvelteKit starter
-  </h1>
+    <h1 class="text-5xl font-bold tracking-tight text-balance sm:text-6xl">
+      Flip Tally
+    </h1>
+    <p class="mx-auto mt-3 max-w-sm text-xl font-semibold text-primary">
+      Keep score, not paper.
+    </p>
+    <p class="mx-auto mt-3 max-w-md text-lg text-pretty text-muted">
+      A colorful, offline score pad for <strong class="text-foreground"
+        >Flip 7</strong
+      >
+      and other round-based games. Set up the table, tap in each round, watch the
+      winner appear.
+    </p>
 
-  <p class="max-w-small text-lg text-pretty text-muted">
-    This is the dummy app shipped with the template. Replace this content with
-    your project. The tooling, configs, and conventions are ready to go.
-  </p>
+    <div class="mx-auto mt-8 flex max-w-xs flex-col gap-3">
+      <Button href="/players" size="lg" block>Start playing</Button>
+      {#if canContinue}
+        <Button href="/play" variant="secondary" size="lg" block
+          >Continue game</Button
+        >
+      {/if}
+    </div>
+  </section>
 
-  <div class="flex flex-wrap items-center justify-center gap-3">
-    <a
-      href="https://github.com/martindzejky/sveltekit-template/blob/master/TEMPLATE.md"
-      class="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 font-medium text-background transition hover:bg-accent-dark focus-visible:bg-accent-dark focus-visible:outline-accent-dark motion-safe:hover:scale-105 motion-safe:active:scale-95"
+  <!-- How it works -->
+  <section class="mx-auto w-full max-w-medium px-5 py-10">
+    <h2 class="text-center text-2xl font-bold">How it works</h2>
+    <ol class="mt-6 grid gap-4 sm:grid-cols-3">
+      {#each steps as step, i (step.title)}
+        {@const Icon = step.icon}
+        <li class="rounded-3xl border border-border bg-surface p-5 shadow-sm">
+          <div class="flex items-center gap-3">
+            <span
+              class="inline-flex size-11 items-center justify-center rounded-2xl bg-primary/12 text-primary"
+            >
+              <Icon size={24} aria-hidden="true" />
+            </span>
+            <span
+              class="font-heading text-lg font-semibold text-muted tabular-nums"
+            >
+              {i + 1}
+            </span>
+          </div>
+          <h3 class="mt-3 text-lg font-semibold">{step.title}</h3>
+          <p class="mt-1 text-pretty text-muted">{step.body}</p>
+        </li>
+      {/each}
+    </ol>
+  </section>
+
+  <!-- Why -->
+  <section class="mx-auto w-full max-w-medium px-5 py-10">
+    <div class="grid gap-3 sm:grid-cols-3">
+      {#each features as feature (feature.title)}
+        {@const Icon = feature.icon}
+        <div
+          class="flex items-start gap-3 rounded-2xl bg-surface-sunken/60 p-4"
+        >
+          <span class="mt-0.5 text-coral">
+            <Icon size={22} aria-hidden="true" />
+          </span>
+          <div>
+            <h3 class="font-semibold">{feature.title}</h3>
+            <p class="text-sm text-pretty text-muted">{feature.body}</p>
+          </div>
+        </div>
+      {/each}
+    </div>
+  </section>
+
+  <!-- Add to home screen hint -->
+  <section class="mx-auto w-full max-w-small px-5 py-6">
+    <div
+      class="flex items-center gap-3 rounded-2xl border-2 border-dashed border-primary/40 bg-primary/8 p-4 text-sm"
     >
-      Read the template guide
-    </a>
-    <a
-      href="https://github.com/martindzejky/sveltekit-template"
-      class="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-background px-4 font-medium transition hover:bg-surface focus-visible:bg-surface motion-safe:hover:scale-105 motion-safe:active:scale-95"
-    >
-      <Github size={18} aria-hidden="true" />
-      View on GitHub
-    </a>
-  </div>
-</section>
+      <Smartphone size={28} class="shrink-0 text-primary" aria-hidden="true" />
+      <p class="text-pretty">
+        <strong>Add to Home Screen</strong> from your browser's share menu to play
+        it like a native app, even offline.
+      </p>
+    </div>
+  </section>
+
+  <div class="flex-1"></div>
+
+  <!-- Footer -->
+  <footer
+    class="mx-auto w-full max-w-medium px-5 py-8 text-center text-sm text-muted"
+    style="padding-bottom: calc(2rem + env(safe-area-inset-bottom));"
+  >
+    <p>Flip Tally — a free, open score pad for game night.</p>
+    <p class="mt-1">
+      Unofficial companion. Not affiliated with The Op or Flip 7.
+    </p>
+  </footer>
+</main>

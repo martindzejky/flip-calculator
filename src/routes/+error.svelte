@@ -15,7 +15,7 @@
     {/if}
   </p>
 
-  <a href="/" class="rounded-sm text-accent underline underline-offset-4">
+  <a href="/" class="text-accent rounded-sm underline underline-offset-4">
     Back home
   </a>
 
